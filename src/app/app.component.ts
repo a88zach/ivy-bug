@@ -1,9 +1,7 @@
-import { Component, Optional } from '@angular/core';
+import { Component, Optional, Directive } from '@angular/core';
 
-// @Component({
-//   template: '',
-// })
-export abstract class AppBaseComponent {
+@Directive()
+export abstract class AppBaseDirective {
   display = 'test';
 
   constructor(@Optional() optionalVar?: string) {
@@ -18,6 +16,9 @@ export abstract class AppBaseComponent {
   templateUrl: './app.component.html',
   styleUrls: ['./app.component.scss']
 })
-export class AppComponent extends AppBaseComponent {
-
+export class AppComponent extends AppBaseDirective {
+  constructor() {
+    // super(); // this now works and sets display to 'test'
+    super('override'); // this now works and sets display to 'override'
+  }
 }
